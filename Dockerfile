@@ -6,5 +6,5 @@ RUN apt update && apt install -y \
 	postgresql-client \
 	yarn
 WORKDIR /product-register
-COPY Gemfile Gemfile.lock /product-register
+COPY Gemfile Gemfile.lock /product-register/
 RUN bundle install

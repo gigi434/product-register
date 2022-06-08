@@ -1,0 +1,14 @@
+sudo: required
+
+services: docker
+
+before_install:
+  - docker-compose up --build -d
+
+script:
+  # Databaseを作成
+  - docker-compose exec --env 'RAILS_ENV=test' web rails db:create
+  # talbeの作成
+  - docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
+  # 標準で用意されているテストを実行する
+  - docker-compose exec --env 'RAILS_ENV=test' web rails test
